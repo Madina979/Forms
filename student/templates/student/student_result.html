@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Student data</title>
+</head>
+<body>
+    <h2>Student data</h2>
+
+{% if data %}
+    <p>First name: {{ data.name }}</p>
+    <p>Last name: {{ data.last_name }}</p>
+    <p>Age: {{ data.age }}</p>
+    <p>Email: {{ data.email }}</p>
+{% else %}
+    <p>No data. Please <a href="{% url 'student' %}">fill out the form</a> first.</p>
+{% endif %}
+
+</body>
+</html>
