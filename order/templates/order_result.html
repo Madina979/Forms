@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Order</title>
+</head>
+<body>
+    <h2>Чек заказа</h2>
+
+    <p>Покупатель: {{ order.name }}</p>
+    <p>Товар: {{ order.product }}</p>
+    <p>Количество: {{ order.quantity }} шт.</p>
+    <p>Цена за штуку: {{ order.price }} сум</p>
+    <p>Доставка: {{ order.delivery }}</p>
+
+    <p>Итого:</p>
+    <h2>{{ order.total }} сум</h2>
+</body>
+</html>
