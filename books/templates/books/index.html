@@ -1,0 +1,53 @@
+<!doctype html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Library</title>
+    <style>
+        body { font-family: Arial, sans-serif; margin: 30px; }
+        table { border-collapse: collapse; width: 100%; }
+        th, td { border: 1px solid #999; padding: 8px; text-align: left; }
+        img { width: 70px; }
+        .add { float: right; padding: 8px 16px; background: #2d8a4e; color: white; text-decoration: none; border-radius: 6px; }
+    </style>
+</head>
+<body>
+    <a class="add" href="{% url 'book_add' %}">Add</a>
+    <h1>Library</h1>
+    <p>Books Read: <b>{{ read_count }}</b> / {{ total }}</p>
+
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Foto</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Description</th>
+            <th>Is read</th>
+            <th>Rating</th>
+            <th>Actions</th>
+        </tr>
+        {% for book in books %}
+        <tr>
+            <td>{{ book.id }}</td>
+            <td><img src="{% static book.foto %}" alt="{{ book.title }}"></td>
+            <td>{{ book.title }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.description }}</td>
+            <td>{% if book.is_read %}✅{% else %}❌{% endif %}</td>
+            <td>{{ book.rating|default_if_none:"-" }}</td>
+            <td>
+                <a href="{% url 'book_edit' book.id %}">edit</a> |
+                <a href="{% url 'book_delete' book.id %}" onclick="return confirm('Would you like to delete it?')">delete</a>
+            </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="8">No books yet</td></tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
